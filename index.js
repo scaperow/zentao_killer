@@ -40,7 +40,11 @@ $(function () {
                 }
             });
         });
-
+        $('#openSiteButton').click(function () {
+            chrome.tabs.create({
+                url:configuration.siteUrl
+            });
+        });
     });
 });
 
