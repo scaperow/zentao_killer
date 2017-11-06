@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <script src="lib/jquery.min.js" type="text/javascript"></script>
+    <script src="lib/underscore.min.js" type="text/javascript"></script>
+    <script src="options.js" type="text/javascript"></script>
+    <link href="lib/pure.css" rel="stylesheet">
+    <style>
+        html,
+        body {
+            background: #ececec;
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        #form {
+            background: #ffffff;
+            padding: 12px;
+            width: 300px;
+            margin: auto;
+        }
+
+        input{
+            width:100%;
+        }
+
+        .action {
+            border: none;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 12px;
+            margin-top: 12px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form" class="pure-form pure-form-stacked">
+        <fieldset>
+            <legend>
+                <h2>Config</h2>
+            </legend>
+
+            <label for="domain">Domain</label>
+            <input id="domain" type="url" placeholder="Zentao's domain" required>
+
+            <label for="times">Frequency</label>
+            <input id="times" type="number" min="5000" value="5000" placeholder="Refresh frequency" required>
+
+
+
+            <div class="action">
+                <button type="submit" class="pure-button pure-button-primary">Save</button>
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+</html>
