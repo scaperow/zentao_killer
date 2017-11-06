@@ -21,13 +21,12 @@
         "scripts": [
             "lib/underscore.min.js",
             "lib/jquery.min.js",
-            "config.js",
             "delegate.js",
             "background.js"
         ]
     },
     "permissions": [
-        "http://61.161.238.158:8071/*",
+        "http://*/",
         "notifications",
         "storage"
     ]

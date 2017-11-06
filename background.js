@@ -1,6 +1,8 @@
-var task = function () {
-    fetchBugs(core.url, function (error, data) {
+var timeoutHandler = null;
+var configuration = null;
 
+var loop = function () {
+    fetchBugs(configuration.serviceUrl, function (error, data) {
         if (error) {
             new Notification("Zentao Bug Killer", {
                 body: error,
@@ -12,23 +14,36 @@ var task = function () {
 
             if (newBugs.length > 0) {
                 var notification = new Notification("", {
-                    body: 'You have ' + (newBugs.length) + 'numbers of new Bugs',
+                    body: 'You have ' + (newBugs.length) + ' numbers of new Bugs',
                     icon: 'images/icon48.png',
                     tag: {}
                 });
 
-                notification.onclick = function () {
-                    window.open(core.pageUrl);
-                };
+                if (configuration.siteUrl) {
+                    notification.onclick = function () {
+                        window.open(configuration.siteUrl);
+                    };
+                }
             }
         }
 
         chrome.browserAction.setBadgeText({ text: (data.bugs.length > 0 ? data.bugs.length + '' : '') });
         localStorage.bugs = JSON.stringify(data.bugs);
-        setTimeout(task, 5000);
+        timeoutHandler = setTimeout(loop, configuration.times);
     });
 };
 
-chrome.browserAction.setBadgeBackgroundColor({ color: '#ff0000' });
-task();
+var start = function (configuration) {
+    clearTimeout(timeoutHandler);
+    configuration = configuration;
+    loop();
+};
 
+chrome.browserAction.setBadgeBackgroundColor({ color: '#ff0000' });
+chrome.storage.local.get('configuration', function (storage) {
+    if (!_.isEmpty(storage.configuration)) {
+        configuration = storage.configuration;
+
+        start(configuration);
+    }
+});

@@ -20,8 +20,8 @@
             margin: auto;
         }
 
-        input{
-            width:100%;
+        input {
+            width: 100%;
         }
 
         .action {
@@ -41,12 +41,17 @@
                 <h2>Config</h2>
             </legend>
 
-            <label for="domain">Domain</label>
-            <input id="domain" type="url" placeholder="Zentao's domain" required>
+            <label for="siteUrl">SITE URL</label>
+            <input id="siteUrl" type="url" placeholder="The zentao url" required>
 
-            <label for="times">Frequency</label>
-            <input id="times" type="number" min="5000" value="5000" placeholder="Refresh frequency" required>
+            <label for="serviceUrl">SERVICE URL</label>
+            <input id="serviceUrl" type="url" placeholder="The url where is task access" required>
 
+            <label for="bugUrl">BUG DETAIL URL PATTERN(Use <strong>${0}</strong>to replace the bug id in url)</label>
+            <input id="bugUrl" type="url" placeholder="The page url where is bug detail" required>
+
+            <label for="times">LOOP TIMES</label>
+            <input id="times" type="number" min="5000" value="5000" placeholder="How long does it take in a background task" required>
 
 
             <div class="action">

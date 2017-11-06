@@ -5,7 +5,7 @@
  * @requires jQuery
  */
 var fetchBugs = function (fetchUrl, callback) {
-    $.ajax({ url: core.url, dataType: 'json' })
+    $.ajax({ url: fetchUrl, dataType: 'json' })
         .done(function (responseData, textStatus, jqXHR) {
             callback(null, JSON.parse(responseData.data));
         })
@@ -20,17 +20,10 @@ var requireOption = function () {
     });
 };
 
-var getBugUrl = function () {
-    var url = null;
-    if (localStorage.monitorUri) {
-        requireOption();
-    } else {
-        url = localStorage.monitorUri;
-    }
-
-    return url;
-};
-
-var getServiceUrl = function () {
-
+/**
+ * 
+ * @param {String} bugId 
+ */
+var getBugUrl = function (bugUrl, bugId) {
+    return bugUrl.replace('${0}', bugId);
 };
